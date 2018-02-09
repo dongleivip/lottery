@@ -3,18 +3,27 @@ import logo from './logo.png';
 import './App.css';
 
 var POOL = [
-  { dirty: false,  title: "RMB-1" },
-  { dirty: false,  title: "RMB-2" },
-  { dirty: false, title: "RMB-3" },
-  { dirty: false, title: "RMB-4" },
-  { dirty: false, title: "RMB-5" },
-  { dirty: false, title: "RMB-6" },
+  { dirty: false, title: "Game-在Jetstar群里发10元分10个红包吧" },
+  { dirty: false, title: "Game-邀请一位异性与你情歌对唱" },
+  { dirty: false, title: "Game-模仿脑白金广告，边唱边跳" },
+  { dirty: false, title: "Game-背一个异性原地转三圈" },
+  { dirty: false, title: "Game-找出现场中你最心动的异性表白一分钟" },
+  { dirty: false, title: "Game-邀请一位异性与你情歌对唱" },
+  { dirty: false, title: "RMB-现金50元" },
+  { dirty: false, title: "RMB-现金20元" },
+  { dirty: false, title: "RMB-现金10元" },
+  { dirty: false, title: "RMB-现金 5元" },
+  { dirty: false, title: "RMB-现金 1元" },
+  { dirty: false, title: "RMB-现金 1" },
+  { dirty: false, title: "Game-现场猫步走秀" },
+  { dirty: false, title: "Game-用屁股写一个单词，观众需要猜出来" },
+  { dirty: false, title: "Game-模仿一位自己熟悉的明星" },
 ];
 
 let luckyPool = [
-  { dirty: false,  title: "RMB-1" },
-  { dirty: false,  title: "RMB-0.1" },
-  { dirty: false, title: "RMB-1" },
+  { dirty: false, title: "RMB-现金 1元" },
+  { dirty: false, title: "RMB-现金 5元" },
+  { dirty: false, title: "RMB-现金 1毛" },
 ];
 
 let acc = 0;
@@ -86,7 +95,8 @@ class App extends Component {
       return;
     } 
 
-    if (inputNum >= POOL.length){
+    const MaxCount = POOL.length + luckyPool.length;
+    if (inputNum >= MaxCount){
       this.setState({
         error: "Out of Range",
         award: '(: 一首凉凉送给你 :)'
