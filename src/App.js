@@ -146,30 +146,34 @@ class App extends Component {
 
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-        </header>
+        {/*<header className="App-header">*/}
+          {/*<img src={logo} className="App-logo" alt="logo" />*/}
+        {/*</header>*/}
         <div>
-        <h1 className="App-title">恭喜发财</h1>
+        <h1 className="App-title">你的梦想实现了吗</h1>
           <div>
-            <label htmlFor="txt_input">Your Lucky Number</label>
+            <label className="lucky-label" htmlFor="txt_input">Sing Out Your Magic Number</label>
           </div>
           
           <div>
-            <input id="txt_input" type="text" ref="myInput" onKeyPress={this.handleKeyPress} />
+            <input className="lucky-input" id="txt_input" type="text" ref="myInput" onKeyPress={this.handleKeyPress} />
           </div>
           <div>
-            <button onClick={this.handleClick.bind(this)}>兑奖</button>
+            <button className="lucky-btn" onClick={this.handleClick.bind(this)}>兑奖</button>
           </div>
-          <div>{ this.state.error }</div>
+          {/*<div>{ this.state.error }</div>*/}
         </div>
-        <div>
-          <span > { this.state.award } </span>
+        <div className="result">
+          <div className="lucky-result">
+            <span>{ this.state.error && '凉凉 :)'}</span>
+            <span > { this.state.award || '新年快乐' } </span>
+          </div>
+
+          <div className="lucky-result__list">
+            {this.showRedeemedList()}
+          </div>
         </div>
 
-        <div className="redeemed">
-          {this.showRedeemedList()}
-        </div>
 
         <div>
           {this.checkEnding()}
