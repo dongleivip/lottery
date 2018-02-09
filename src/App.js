@@ -11,7 +11,13 @@ var POOL = [
   { dirty: false, title: "RMB-6" },
 ];
 
+let luckyPool = [
+  { dirty: false,  title: "RMB-1" },
+  { dirty: false,  title: "RMB-0.1" },
+  { dirty: false, title: "RMB-1" },
+];
 
+let acc = 0;
 class App extends Component {
 
   constructor (props) {
@@ -57,17 +63,25 @@ class App extends Component {
     return POOL[index].title;
   }
 
+  getLucyDog = () => {
+      this.setState({
+        award: luckyPool[acc-1].title,
+        error: '',
+      });
+
+  }
 
   handleClick = () => {
 
     var inputValue = this.refs.myInput.value;
-
+    var redeemed = this.state.redeemed;
     var inputNum = parseInt(inputValue);
+    var award;
 
     if (isNaN(inputNum) || inputNum < 0) {
       this.setState({
         error: "Invalid Input",
-        award: ''
+        award: '(: 一首凉凉送给你 :)'
       });
       return;
     } 
@@ -75,24 +89,27 @@ class App extends Component {
     if (inputNum >= POOL.length){
       this.setState({
         error: "Out of Range",
-        award: ''
+        award: '(: 一首凉凉送给你 :)'
       });
       return; 
     }
 
-    var redeemed = this.state.redeemed;
-
-    const redeem = { inputNum,  }
 
     if (this.hasBeenRedeemed(inputNum)) {
       this.setState({
         error: inputNum + " has been redeemed",
-        award: ''
+        award: '(: 一首凉凉送给你 :)'
       });
       return;
     }
 
-    const award = this.getAwardFromPool();
+    acc = acc + 1;
+    if(acc <= 3) {
+      this.getLucyDog(acc);
+      award = luckyPool[acc-1].title
+    } else {
+      award = this.getAwardFromPool();
+    }
 
     redeemed.push({inputNum, award});
 
@@ -165,7 +182,6 @@ class App extends Component {
         </div>
         <div className="result">
           <div className="lucky-result">
-            <span>{ this.state.error && '凉凉 :)'}</span>
             <span > { this.state.award || '新年快乐' } </span>
           </div>
 
